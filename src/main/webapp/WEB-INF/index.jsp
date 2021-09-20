@@ -157,14 +157,14 @@
     <form:form action="save" method="POST" modelAttribute="loan" id="myform">
         <h4>Виберіть номер вашого відділення:</h4>
 
-        <form:select id="sel" name="sel" path="division" class="js-select">
+        <form:select id="sel" name="sel" path="edrpou" class="js-select">
             <form:option value=""></form:option>
             <form:option value="базове управління продажів (311)">базове управління продажів (311)</form:option>
         </form:select>
 
     <h4>Питання 1: Чи задоволені Ви поточною якістю матеріально-технічного забезпечення відділення (господарські питання, техніка (крім ІТ)?</h4>
 
-        <form:select id="sel1" name="sel" path="question1" class="js-select">
+        <form:select id="sel1" name="sel" path="name" class="js-select">
         <form:option value=""></form:option>
         <form:option value="в цілому задоволений">в цілому задоволений</form:option>
         <form:option value="потребує суттєвого покращення">потребує суттєвого покращення</form:option>
@@ -173,7 +173,7 @@
 
         <h4>Питання 2: Які основні проблемні зони в забезпеченні? (Можна обрати більше одного варіанту)</h4>
 
-        <form:select id="sel2" name="sel" path="question2" class="js-select2" multiple="multiple">
+        <form:select id="sel2" name="sel" path="sum" class="js-select2" multiple="multiple">
 <%--            <form:option value="NONE">Оберіть відповідь</form:option>--%>
             <form:option value="поточні ремонти">поточні ремонти</form:option>
             <form:option value="кондиціонування/опалення">кондиціонування/опалення</form:option>
@@ -190,21 +190,11 @@
 
 
         <h4>Питання 3: Яка поточна якість реакції на Ваші заявки по забезпеченню?</h4>
-        <form:select id="sel3" name="sel" path="question3" class="js-select">
+        <form:select id="sel3" name="sel" path="documents" class="js-select">
             <form:option value=""></form:option>
             <form:option value="реагують швидко і результат в прийнятні терміни, якісно">реагують швидко і результат в прийнятні терміни, якісно</form:option>
             <form:option value="реагують швидко, але реалізація довга або її не має">реагують швидко, але реалізація довга або її не має</form:option>
             <form:option value="реагують довго і реалізація довга або її не має">реагують довго і реалізація довга або її не має</form:option>
-        </form:select>
-
-        <h4>Питання 4: Чи задоволені ви системою заявок ServiceDesk?</h4>
-        <form:select id="sel4" name="sel" path="question4" class="js-select">
-<%--            <form:option value="NONE">Оберіть відповідь</form:option>--%>
-            <form:option value=""></form:option>
-            <form:option value="не знаю що це">не знаю що це</form:option>
-            <form:option value="вирішую проблеми прямим зверненням так надійніше">вирішую проблеми прямим зверненням так надійніше</form:option>
-            <form:option value="формую заявки в ServiceDesk, але потрібен додатковий дзвінок">формую заявки в ServiceDesk, але потрібен додатковий дзвінок</form:option>
-            <form:option value="формую заявки в ServiceDesk і цього достатньо для результату">формую заявки в ServiceDesk і цього достатньо для результату</form:option>
         </form:select>
 
         <%--     <h4><div id="divId"></div></h4>--%>
