@@ -1,0 +1,4 @@
+loanapp\controller\LoanController.class
+loanapp\SpringBootWebRun.class
+loanapp\dao\LoanDao.class
+loanapp\model\Loan.class
