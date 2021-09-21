@@ -2,21 +2,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
-
+<%--
+  Created by IntelliJ IDEA.
+  User: mykhailechko
+  Date: 24.04.2021
+  Time: 16:42
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-
-    <title>Опитування!!!</title>
-
-    <meta charset="utf-8" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+    <title>Кредитні заявки</title>
 
     <style>
         .blue-button{
@@ -32,109 +28,25 @@
         }
         table {
             font-family: "Helvetica Neue", Helvetica, sans-serif;
-            width: 50%;
+            font-size: smaller;
+
         }
         th {
-            background: SteelBlue;
+            background:  crimson;
             color: white;
         }
         td,th{
             border: 1px solid gray;
-            width: 25%;
+
             text-align: left;
             padding: 5px 10px;
         }
         .text {
             text-align:  center;
         }
-        h1 {
+        h1,h2 {
             color: red;
         }
-
-
-
-
-        body {
-            /* 	font-family: 'Ubuntu', sans-serif; */
-            /*font-weight: bold;*/
-        }
-        .select2-container {
-            min-width: 800px;
-        }
-
-        .select2-results__option {
-            padding-right: 20px;
-            vertical-align: middle;
-        }
-        .select2-results__option:before {
-            content: "";
-            display: inline-block;
-            position: relative;
-            height: 20px;
-            width: 20px;
-            border: 2px solid #e9e9e9;
-            border-radius: 4px;
-            background-color: #fff;
-            margin-right: 20px;
-            vertical-align: middle;
-        }
-        .select2-results__option[aria-selected=true]:before {
-            font-family:fontAwesome;
-            content: "\f00c";
-            color: #fff;
-            background-color: red;
-            border: 0;
-            display: inline-block;
-            padding-left: 3px;
-        }
-
-
-        .select2-container--default .select2-results__option[aria-selected=true] {
-            background-color: #fff;
-        }
-        .select2-container--default .select2-results__option--highlighted[aria-selected] {
-            background-color: #eaeaeb;
-            color: #272727;
-        }
-        .select2-container--default .select2-selection--multiple {
-            margin-bottom: 10px;
-        }
-        .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
-            border-radius: 4px;
-        }
-
-        .select2-container--default.select2-container--focus .select2-selection--multiple {
-            border-color: red;
-            border-width: 2px;
-        }
-
-        .select2-container--open .select2-dropdown--below {
-
-            border-radius: 6px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-
-        }
-        .select2-selection .select2-selection--multiple:after {
-            content: 'hhghgh';
-        }
-
-        /* select with icons badges single*/
-        .select-icon .select2-selection__placeholder .badge {
-            display: none;
-        }
-
-        .select-icon .placeholder {
-            /* 	display: none; */
-        }
-        .select-icon .select2-results__option:before,
-        .select-icon .select2-results__option[aria-selected=true]:before {
-            display: none !important;
-            /* content: "" !important; */
-        }
-        .select-icon  .select2-search--dropdown {
-            display: none;
-        }
-
     </style>
 </head>
 <body>
@@ -145,127 +57,65 @@
 <%--<h5 class="text">Created by Nazar Mykhailechko</h5>
 <br>--%>
 <br>
-<h1 class="text">Опитування!!!</h1>
+<h2 class="text">Список кредитних заявок:</h2>
 
 <%--<% String homeDirectory = System.getProperty("user.name"); %>--%>
 <%--<h3 class="text"><%=homeDirectory%></h3>--%>
 
-<h5 class="text">Опитування відділень, щодо якості сервісу по напрямку адміністративно-господарської діяльності,</h5>
-<h5 class="text">що надається регіональній мережі Головним банком:</h5>
+<div id="container" style="position:absolute; top:60px; right:10px; width:500px; height:500px;"></div>
+<script src="https://cdn.anychart.com/js/latest/anychart-bundle.min.js"></script>
+<button onclick="location.href='/addloan'" type="button" class="btn btn-primary">Створити нову кредитну заявку</button>
 
-<%--    <form:form action="save" method="POST" modelAttribute="voting" onsubmit="alert('Дякуємо! Ваш голос зараховано'); false">--%>
-    <form:form action="save" method="POST" modelAttribute="loan" id="myform">
-        <h4>Виберіть номер вашого відділення:</h4>
-
-        <form:select id="sel" name="sel" path="edrpou" class="js-select">
-            <form:option value=""></form:option>
-            <form:option value="базове управління продажів (311)">базове управління продажів (311)</form:option>
-        </form:select>
-
-    <h4>Питання 1: Чи задоволені Ви поточною якістю матеріально-технічного забезпечення відділення (господарські питання, техніка (крім ІТ)?</h4>
-
-        <form:select id="sel1" name="sel" path="name" class="js-select">
-        <form:option value=""></form:option>
-        <form:option value="в цілому задоволений">в цілому задоволений</form:option>
-        <form:option value="потребує суттєвого покращення">потребує суттєвого покращення</form:option>
-        <form:option value="дуже погано(неприйнятно)">дуже погано(неприйнятно)</form:option>
-    </form:select>
-
-        <h4>Питання 2: Які основні проблемні зони в забезпеченні? (Можна обрати більше одного варіанту)</h4>
-
-        <form:select id="sel2" name="sel" path="sum" class="js-select2" multiple="multiple">
-<%--            <form:option value="NONE">Оберіть відповідь</form:option>--%>
-            <form:option value="поточні ремонти">поточні ремонти</form:option>
-            <form:option value="кондиціонування/опалення">кондиціонування/опалення</form:option>
-            <form:option value="побутова техніка">побутова техніка</form:option>
-            <form:option value="касова техніка">касова техніка</form:option>
-            <form:option value="забезпечення папером; касовими матеріалами">забезпечення папером; касовими матеріалами</form:option>
-            <form:option value="клінінг(прибирання)">клінінг(прибирання)</form:option>
-            <form:option value="меблі">меблі</form:option>
-            <form:option value="освітлення; заміна ламп">освітлення, заміна ламп</form:option>
-            <form:option value="сантехніка; вода">сантехніка; вода</form:option>
-            <form:option value="перебої з електроенергією">перебої з електроенергією</form:option>
-            <form:option value="обмін з документами з ГБ(Текс; Нова пошта)">обмін з документами з ГБ(Текс; Нова пошта)</form:option>
-        </form:select>
-
-
-        <h4>Питання 3: Яка поточна якість реакції на Ваші заявки по забезпеченню?</h4>
-        <form:select id="sel3" name="sel" path="documents" class="js-select">
-            <form:option value=""></form:option>
-            <form:option value="реагують швидко і результат в прийнятні терміни, якісно">реагують швидко і результат в прийнятні терміни, якісно</form:option>
-            <form:option value="реагують швидко, але реалізація довга або її не має">реагують швидко, але реалізація довга або її не має</form:option>
-            <form:option value="реагують довго і реалізація довга або її не має">реагують довго і реалізація довга або її не має</form:option>
-        </form:select>
-
-        <%--     <h4><div id="divId"></div></h4>--%>
-        <br>
-        <br>
-    <input type="submit" value="Проголосувати">
-    </form:form>
-
-
+<p>
+<c:if test="${!empty listOfLoans}">
+    <table class="tg">
+        <tr>
+            <th width="20">Id</th>
+            <th width="80">ЄДРПОУ</th>
+            <th width="220">Назва клієнта</th>
+            <th width="220">Сума</th>
+            <th width="1000">Перелік документів</th>
+            <th width="80">Статус</th>
+            <th width="20">Змінити</th>
+            <th width="20">Видалити</th>
+        </tr>
+        <c:forEach items="${listOfLoans}" var="loan">
+            <tr>
+                <td>${loan.id}</td>
+                <td>${loan.edrpou}</td>
+                <td>${loan.name}</td>
+                <td>${loan.sum}</td>
+                <%--<td>${loan.documents.replaceAll(",","<br>")}</td>--%>
+                <td>${loan.documents}</td>
+                <td>${loan.status}</td>
+                <td><a href="<c:url value='/updateloan/${loan.id}' />" >Змінити</a></td>
+                <td><a href="<c:url value='/delete/${loan.id}' />" >Видалити</a></td>
+            </tr>
+        </c:forEach>
+    </table>
+</c:if>
 </body>
 
-<script language="javascript">
+<script>
+    function getDataForChart() {
+        let obj = JSON.parse(JSON.stringify(${listOfVotes})) ;
 
-
-    function JSGetSelectedItem() {
-        let dropdownIndex = document.getElementById('sel').selectedIndex;
-        let dropdownValue = document.getElementById('sel')[dropdownIndex].text;
-        /*alert("Hello JSCript " + dropdownValue);*/
-        if (dropdownValue === 'Так'){
-            document.getElementById("divId").innerHTML= dropdownValue + "<h3>Питання 2: Якщо відповідь «Так», то надайти свої дані:</h3><p><label for='firstname'>ПІБ (повна назва): </label><input name='pib'  type='text' required/></p><p><label for='date'>Дата народження: </label><input name='birth' type='date' value='2000-01-01' required/></p>"
-        }else{
-            document.getElementById("divId").innerHTML=""
+        let values = [];
+        for(let k in obj){
+                values.push(obj[k]['question1']);
         }
+
+        let result = values.reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), Object.create(null));
+
+        return Object.entries(result);
     }
 
-
-    function JSGetSelectedItem1() {
-
-        let dropdownIndex = document.getElementById('sel1').selectedIndex;
-        let dropdownValue = document.getElementById('sel1')[dropdownIndex].text;
-if (dropdownValue === 'Оберіть відповідь'){
-
-}
-
-        alert(dropdownValue);
-
-    }
-
-    function validateSelects()
-    {
-        let m = false;
-
-        if ( $('#sel').val() !== '' && $('#sel1').val() !== '' && $('#sel2').val().length !== 0 && $('#sel3').val() !== '' && $('#sel4').val() !== ''){  m=true; }
-        else{
-        alert("Ви не дали відповідь на всі запитання!");
-        return false
-    }
-        alert("Дякуємо! Ваш голос зараховано!");
-        return(m);
-    }
-    // For the functionality.
-    $('#myform').on('submit',function()
-    {
-        return validateSelects();
+    anychart.onDocumentLoad(function() {
+        // create chart and set data
+        // as Array of Arrays
+        var chart = anychart.pie(getDataForChart());
+        chart.title("Результати голосування");
+        chart.container("container").draw();
     });
-
-
-    $(".js-select2").select2({
-        closeOnSelect : false,
-        placeholder : "Оберіть відповідь",
-        // allowHtml: true,
-        allowClear: true,
-        multiple: true
-        // tags: true // создает новые опции на лету
-    })
-
-    $(".js-select").select2({
-        placeholder: "Оберіть відповідь",
-        allowClear: true
-        // tags: true // создает новые опции на лету
-    })
 </script>
-
 </html>

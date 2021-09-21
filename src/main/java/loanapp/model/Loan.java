@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
 
     @Column(name = "edrpou", nullable = false)
     private String edrpou;
@@ -16,8 +16,10 @@ public class Loan {
     private String name;
     @Column(name = "sum", nullable = false)
     private String sum;
-    @Column(name = "documents", nullable = false)
+    @Column(name = "documents", columnDefinition = "text", nullable = false)
     private String documents;
+    @Column(name = "status", columnDefinition = "varchar(255) default 'на розгляді'",updatable = true)
+    private String status = "на розгляді";
 
 //    @Column(name = "pib")
 //    private String pib;
@@ -30,19 +32,20 @@ public class Loan {
     public Loan() {
     }
 
-    public Loan(long id, String edrpou, String name, String sum, String documents) {
+    public Loan(int id, String edrpou, String name, String sum, String documents, String status) {
         this.id = id;
         this.edrpou = edrpou;
         this.name = name;
         this.sum = sum;
         this.documents = documents;
+        this.status = status;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -78,6 +81,14 @@ public class Loan {
         this.documents = documents;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Loan{" +
@@ -86,6 +97,7 @@ public class Loan {
                 ", name='" + name + '\'' +
                 ", sum='" + sum + '\'' +
                 ", documents='" + documents + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

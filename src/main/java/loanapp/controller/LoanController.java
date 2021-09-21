@@ -5,9 +5,8 @@ import loanapp.model.Loan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -16,11 +15,11 @@ public class LoanController {
     @Autowired
     LoanDao loanDao;
 
-    @RequestMapping("/add")
+    @RequestMapping("/addloan")
     public String showNewClientPage(Model model) {
         Loan loan = new Loan();
         model.addAttribute("loan", loan);
-        return "new_client";
+        return "addloan";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -33,14 +32,15 @@ public class LoanController {
     @RequestMapping("/")
     public String home(Model model) {
 
-        Loan loan = new Loan();
+/*        Loan loan = new Loan();
         model.addAttribute("loan", loan);
+        */
 
-/*        for (Voting vt : votingDao.findAll()) {
-            System.out.print(vt.toString());
+        for (Loan ln : loanDao.findAll()) {
+            System.out.print(ln.toString());
         }
 
-        model.addAttribute("listOfQuestions", votingDao.findAll());*/
+        model.addAttribute("listOfLoans", loanDao.findAll());
 
         return "index";
     }
@@ -52,8 +52,38 @@ public class LoanController {
             System.out.print(ln.toString());
         }
 
-        model.addAttribute("listOfVotes", loanDao.findAll());
-        return "results";
+        model.addAttribute("listOfLoans", loanDao.findAll());
+        return "index";
+    }
+
+/*    @RequestMapping(value = "/deleteClient/{id}")
+    public String deleteClient(@PathVariable(name = "id") int id) {
+        loanDao.deleteById(id);
+        return "redirect:/";
+    }*/
+
+    @RequestMapping(value = "/updateloan/{id}")
+    public ModelAndView updateClient(@PathVariable(name = "id") int id) {
+        ModelAndView mav = new ModelAndView("updateloan");
+        Loan loan = loanDao.findById(id).get();
+        mav.addObject("loan", loan);
+        return mav;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String saveUpdateClient(@RequestParam("id") int id,
+                                   @RequestParam("edrpou") String edrpou,
+                                   @RequestParam("name") String name,
+                                   @RequestParam("sum") String sum,
+                                   @RequestParam("documents") String documents) {
+        //String userlogin = System.getenv("username");
+        Loan loan = loanDao.findById(id).get();
+        loan.setEdrpou(edrpou);
+        loan.setName(name);
+        loan.setSum(sum);
+        loan.setDocuments(documents);
+        loanDao.save(loan);
+        return "redirect:/";
     }
 
 }
