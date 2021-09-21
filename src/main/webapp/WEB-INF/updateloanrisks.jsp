@@ -217,10 +217,10 @@ if (dropdownValue === 'Оберіть відповідь'){
 
         if ( $('#sel').val() !== '' && $('#sel1').val() !== '' && $('#sel2').val().length !== 0 && $('#sel3').val() !== '' && $('#sel4').val() !== ''){  m=true; }
         else{
-        alert("Ви не дали відповідь на всі запитання!");
+        alert("Ви не заповнили поле статус!");
         return false
     }
-        alert("Дякуємо! Ваш голос зараховано!");
+        alert("Дякуємо! Саттус змінено!");
         return(m);
     }
     // For the functionality.

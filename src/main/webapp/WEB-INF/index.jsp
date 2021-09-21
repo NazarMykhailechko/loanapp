@@ -13,6 +13,7 @@
 <html>
 <head>
     <title>Кредитні заявки</title>
+    <meta charset="utf-8" />
 
     <style>
         .blue-button{
