@@ -25,7 +25,7 @@ public class Loan {
     private String status = "на розгляді";
     @Column(name = "datetime", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",updatable = true)
     private String datetime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-    @Column(name = "datetimerisk", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",updatable = true)
+    @Column(name = "datetimerisk", columnDefinition = "TIMESTAMP",updatable = true)
     private String datetimerisk;
 
 //    @Column(name = "pib")
