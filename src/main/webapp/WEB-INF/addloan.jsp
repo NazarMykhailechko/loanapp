@@ -154,13 +154,13 @@
     <form:form action="save" method="POST" modelAttribute="loan" id="myform">
 
         <h4>Введіть ЄДРПОУ:</h4>
-        <form:input path="edrpou" style="width:10%" placeholder="example"/>
+        <form:input id="sel" path="edrpou" style="width:10%" placeholder="example"/>
 
         <h4>Введіть назву клієнта:</h4>
-        <form:input path="name" style="width:50%" placeholder="example"/>
+        <form:input id="sel1" path="name" style="width:50%" placeholder="example"/>
 
         <h4>Введіть суму заявки:</h4>
-        <form:input path="sum" style="width:50%" placeholder="example"/>
+        <form:input id="sel3" path="sum" style="width:50%" placeholder="example"/>
 
         <h4>Список наданих документів:</h4>
         <form:select id="sel2" name="sel" path="documents" class="js-select2" multiple="multiple">
@@ -223,10 +223,10 @@ if (dropdownValue === 'Оберіть відповідь'){
 
         if ( $('#sel').val() !== '' && $('#sel1').val() !== '' && $('#sel2').val().length !== 0 && $('#sel3').val() !== '' && $('#sel4').val() !== ''){  m=true; }
         else{
-        alert("Ви не дали відповідь на всі запитання!");
+        alert("Ви не заповнили всі поля!");
         return false
     }
-        alert("Дякуємо! Ваш голос зараховано!");
+        alert("Дякуємо! Кредитну заявку створено!");
         return(m);
     }
     // For the functionality.

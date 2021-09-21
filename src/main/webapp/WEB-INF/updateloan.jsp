@@ -229,7 +229,7 @@ if (dropdownValue === 'Оберіть відповідь'){
         alert("Ви не заповнили всі поля!");
         return false
     }
-        alert("Дякуємо! Кредитну заявку створено!");
+        alert("Дякуємо! Кредитну заявку оновлено!");
         return(m);
     }
     // For the functionality.
