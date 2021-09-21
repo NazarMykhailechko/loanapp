@@ -28,7 +28,7 @@
         }
         table {
             font-family: "Helvetica Neue", Helvetica, sans-serif;
-            font-size: smaller;
+            font-size: x-small;
 
         }
         th {
@@ -56,13 +56,12 @@
 </div>
 <%--<h5 class="text">Created by Nazar Mykhailechko</h5>
 <br>--%>
-<br>
 <h2 class="text">Список кредитних заявок:</h2>
 
 <%--<% String homeDirectory = System.getProperty("user.name"); %>--%>
 <%--<h3 class="text"><%=homeDirectory%></h3>--%>
 
-<div id="container" style="position:absolute; top:60px; right:10px; width:500px; height:500px;"></div>
+<%--<div id="container" style="position:absolute; top:60px; right:10px; width:500px; height:500px;"></div>--%>
 <script src="https://cdn.anychart.com/js/latest/anychart-bundle.min.js"></script>
 <button onclick="location.href='/addloan'" type="button" class="btn btn-primary">Створити нову кредитну заявку</button>
 
@@ -71,13 +70,15 @@
     <table class="tg">
         <tr>
             <th width="20">Id</th>
-            <th width="80">ЄДРПОУ</th>
-            <th width="220">Назва клієнта</th>
-            <th width="220">Сума</th>
-            <th width="1000">Перелік документів</th>
+            <th width="60">ЄДРПОУ</th>
+            <th width="200">Назва клієнта</th>
+            <th width="80">Сума</th>
+            <th width="600">Перелік документів</th>
+            <th width="130">Дата заявки</th>
             <th width="80">Статус</th>
+            <th width="130">Дата статусу заявки</th>
             <th width="20">Змінити</th>
-            <th width="20">Видалити</th>
+
         </tr>
         <c:forEach items="${listOfLoans}" var="loan">
             <tr>
@@ -85,11 +86,12 @@
                 <td>${loan.edrpou}</td>
                 <td>${loan.name}</td>
                 <td>${loan.sum}</td>
-                <%--<td>${loan.documents.replaceAll(",","<br>")}</td>--%>
-                <td>${loan.documents}</td>
+                <td>${loan.documents.replaceAll(",","<br>")}</td>
+                <td>${loan.datetime}</td>
                 <td>${loan.status}</td>
-                <td><a href="<c:url value='/updateloan/${loan.id}' />" >Змінити</a></td>
-                <td><a href="<c:url value='/delete/${loan.id}' />" >Видалити</a></td>
+                <td>${loan.datetimerisk}</td>
+                <td><a href="<c:url value='/updateloan/${loan.id}'/>" >Змінити</a></td>
+
             </tr>
         </c:forEach>
     </table>

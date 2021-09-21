@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 @Controller
 public class LoanController {
@@ -24,8 +27,9 @@ public class LoanController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveClient(@ModelAttribute("loan") Loan loan) {
+        loan.setDocuments(loan.getDocuments().replaceAll(",","\n"));
         loanDao.save(loan);
-        System.out.println(loan);
+        System.out.println(loan.getDocuments());
         return "redirect:/";
     }
 
@@ -45,6 +49,18 @@ public class LoanController {
         return "index";
     }
 
+    @RequestMapping("/risk")
+    public String homerisk(Model model) {
+
+        for (Loan ln : loanDao.findAll()) {
+            System.out.print(ln.toString());
+        }
+
+        model.addAttribute("listOfLoans", loanDao.findAll());
+
+        return "indexrisks";
+    }
+
     @RequestMapping("/results")
     public String results(Model model) {
 
@@ -62,7 +78,7 @@ public class LoanController {
         return "redirect:/";
     }*/
 
-    @RequestMapping(value = "/updateloan/{id}")
+    @RequestMapping("/updateloan/{id}")
     public ModelAndView updateClient(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("updateloan");
         Loan loan = loanDao.findById(id).get();
@@ -82,8 +98,28 @@ public class LoanController {
         loan.setName(name);
         loan.setSum(sum);
         loan.setDocuments(documents);
+        System.out.println(documents);
         loanDao.save(loan);
         return "redirect:/";
+    }
+
+    @RequestMapping("/updateloanrisks/{id}")
+    public ModelAndView updateClientRisks(@PathVariable(name = "id") int id) {
+        ModelAndView mav = new ModelAndView("updateloanrisks");
+        Loan loan = loanDao.findById(id).get();
+        mav.addObject("loan", loan);
+        return mav;
+    }
+
+    @RequestMapping(value = "/updaterisks", method = RequestMethod.POST)
+    public String saveUpdateClientRisks(@RequestParam("id") int id,
+                                        @RequestParam("status") String status) {
+        //String userlogin = System.getenv("username");
+        Loan loan = loanDao.findById(id).get();
+        loan.setStatus(status);
+        loan.setDatetimerisk(new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()));
+        loanDao.save(loan);
+        return "redirect:/risk";
     }
 
 }

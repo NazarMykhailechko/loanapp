@@ -151,7 +151,9 @@
 <%--<h3 class="text"><%=homeDirectory%></h3>--%>
 
 <%--    <form:form action="save" method="POST" modelAttribute="voting" onsubmit="alert('Дякуємо! Ваш голос зараховано'); false">--%>
-    <form:form action="update" method="POST" modelAttribute="loan" id="myform">
+    <form:form action="/update" method="POST" modelAttribute="loan" id="myform">
+
+        <form:hidden path="id" style="width:10%" placeholder="example" />
 
         <h4>ЄДРПОУ:</h4>
         <form:input path="edrpou" style="width:10%" placeholder="example" />
@@ -164,7 +166,7 @@
 
         <h4>Список наданих документів:</h4>
         <form:select id="sel2" name="sel" path="documents" class="js-select2" multiple="multiple">
-<%--            <form:option value="NONE">Оберіть відповідь</form:option>--%>
+            <%--            <form:option value="NONE">Оберіть відповідь</form:option>--%>
             <form:option value="-Опитувальник юридичної особи">Опитувальник юридичної особи</form:option>
             <form:option value="-Засвідчена керівником копія Свідоцтва про реєстрацію/Витяг/Виписку з ЄДРПОУ, що містить відомості про юридичну особу">Засвідчена керівником копія Свідоцтва про реєстрацію/Витяг/Виписку з ЄДРПОУ що містить відомості про юридичну особу</form:option>
             <form:option value="-Оригінал установчих документів або нотаріально засвідчені їх копії">Оригінал установчих документів або нотаріально засвідчені їх копії</form:option>
@@ -181,10 +183,11 @@
             <form:option value="-Інша інформація">Інша інформація</form:option>
         </form:select>
 
+
         <%--     <h4><div id="divId"></div></h4>--%>
         <br>
         <br>
-    <input type="submit" value="Створити заявку">
+    <input type="submit" value="Оновити заявку">
     </form:form>
 
 
@@ -230,7 +233,7 @@ if (dropdownValue === 'Оберіть відповідь'){
         return(m);
     }
     // For the functionality.
-    $('#myform').on('submit',function()
+    $('#myform1').on('submit',function()
     {
         return validateSelects();
     });
@@ -239,15 +242,15 @@ if (dropdownValue === 'Оберіть відповідь'){
     $(".js-select2").select2({
         closeOnSelect : false,
         placeholder : "Оберіть відповідь",
-        // allowHtml: true,
-        allowClear: true,
+        //allowHtml: true,
+        //allowClear: true,
         multiple: true
         // tags: true // создает новые опции на лету
     })
 
     $(".js-select").select2({
         placeholder: "Оберіть відповідь",
-        allowClear: true
+        //allowClear: true
         // tags: true // создает новые опции на лету
     })
 </script>

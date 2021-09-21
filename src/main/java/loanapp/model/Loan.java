@@ -1,6 +1,8 @@
 package loanapp.model;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 @Table(name = "Loans")
@@ -8,6 +10,7 @@ import javax.persistence.*;
 public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false,columnDefinition = "INTEGER" )
     private int id;
 
     @Column(name = "edrpou", nullable = false)
@@ -20,6 +23,10 @@ public class Loan {
     private String documents;
     @Column(name = "status", columnDefinition = "varchar(255) default 'на розгляді'",updatable = true)
     private String status = "на розгляді";
+    @Column(name = "datetime", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",updatable = true)
+    private String datetime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+    @Column(name = "datetimerisk", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",updatable = true)
+    private String datetimerisk;
 
 //    @Column(name = "pib")
 //    private String pib;
@@ -32,21 +39,19 @@ public class Loan {
     public Loan() {
     }
 
-    public Loan(int id, String edrpou, String name, String sum, String documents, String status) {
+    public Loan(int id, String edrpou, String name, String sum, String documents, String status, String datetime, String datetimerisk) {
         this.id = id;
         this.edrpou = edrpou;
         this.name = name;
         this.sum = sum;
         this.documents = documents;
         this.status = status;
+        this.datetime = datetime;
+        this.datetimerisk = datetimerisk;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getEdrpou() {
@@ -89,6 +94,22 @@ public class Loan {
         this.status = status;
     }
 
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
+
+    public String getDatetimerisk() {
+        return datetimerisk;
+    }
+
+    public void setDatetimerisk(String datetimerisk) {
+        this.datetimerisk = datetimerisk;
+    }
+
     @Override
     public String toString() {
         return "Loan{" +
@@ -98,6 +119,8 @@ public class Loan {
                 ", sum='" + sum + '\'' +
                 ", documents='" + documents + '\'' +
                 ", status='" + status + '\'' +
+                ", datetime='" + datetime + '\'' +
+                ", datetimerisk='" + datetimerisk + '\'' +
                 '}';
     }
 }
