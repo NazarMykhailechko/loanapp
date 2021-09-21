@@ -5,7 +5,7 @@
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://eu-cdbr-west-01.cleardb.com:3306/heroku_bd5904d8543db05?reconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8</jdbc-url>
+      <jdbc-url>jdbc:mysql://eu-cdbr-west-01.cleardb.com:3306/heroku_bd5904d8543db05?reconnect=true&amp;useUnicode=yes&amp;characterEncoding=UTF-8</jdbc-url>
       <driver-properties>
         <property name="serverTimezone" value="UTC" />
         <property name="characterSetResults" value="utf-8" />
