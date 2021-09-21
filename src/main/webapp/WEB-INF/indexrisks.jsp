@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>Кредитні заявки</title>
-    <meta charset="utf-8" />
+
     <style>
         .blue-button{
             background: #25A6E1;
