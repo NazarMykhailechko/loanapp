@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="jdbc:mysql://eu-cdbr-west-01.cleardb.com:3306/heroku_bd5904d8543db05?reconnect=true&amp;useUnicode=yes&amp;characterEncoding=UTF-8&amp;serverTimezone=Europe/Kiev" uuid="d3d9e191-125a-4292-87b5-e81e4ff77d38">
+    <data-source source="LOCAL" name="heroku_bd5904d8543db05@eu-cdbr-west-01.cleardb.com" uuid="d3d9e191-125a-4292-87b5-e81e4ff77d38">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://eu-cdbr-west-01.cleardb.com:3306/heroku_bd5904d8543db05?reconnect=true&amp;useUnicode=yes&amp;characterEncoding=UTF-8&amp;serverTimezone=Europe/Kiev</jdbc-url>
+      <jdbc-url>jdbc:mysql://eu-cdbr-west-01.cleardb.com:3306/heroku_bd5904d8543db05?reconnect=true&amp;useUnicode=yes&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC</jdbc-url>
       <driver-properties>
-        <property name="serverTimezone" value="Europe/Kiev" />
         <property name="characterSetResults" value="utf-8" />
       </driver-properties>
     </data-source>
