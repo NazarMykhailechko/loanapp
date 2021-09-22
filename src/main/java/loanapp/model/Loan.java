@@ -21,11 +21,11 @@ public class Loan {
     private String sum;
     @Column(name = "documents", columnDefinition = "text", nullable = false)
     private String documents;
-    @Column(name = "status", columnDefinition = "varchar(255) default 'на розгляді'",updatable = true)
+    @Column(name = "status", columnDefinition = "varchar(255) default 'на розгляді'")
     private String status = "на розгляді";
-    @Column(name = "datetime", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",updatable = true)
+    @Column(name = "datetime", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private String datetime = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-    @Column(name = "datetimerisk", columnDefinition = "TIMESTAMP",updatable = true)
+    @Column(name = "datetimerisk", columnDefinition = "TIMESTAMP")
     private String datetimerisk;
 
 //    @Column(name = "pib")

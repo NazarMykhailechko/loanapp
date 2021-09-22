@@ -27,9 +27,7 @@ public class LoanController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveClient(@ModelAttribute("loan") Loan loan) {
-        loan.setDocuments(loan.getDocuments().replaceAll(",","\n"));
         loanDao.save(loan);
-        System.out.println(loan.getDocuments());
         return "redirect:/";
     }
 
@@ -98,7 +96,6 @@ public class LoanController {
         loan.setName(name);
         loan.setSum(sum);
         loan.setDocuments(documents);
-        System.out.println(documents);
         loanDao.save(loan);
         return "redirect:/";
     }
