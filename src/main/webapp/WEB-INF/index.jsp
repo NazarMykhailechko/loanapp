@@ -34,6 +34,18 @@
             background:  crimson;
             color: white;
         }
+        .reject{
+            background:  red;
+        }
+        .notalldocuments{
+            background:  orange;
+        }
+        .getwork{
+            background:  burlywood;
+        }
+        .ok{
+            background:  seagreen;
+        }
         td,th{
             border: 1px solid gray;
 
@@ -72,15 +84,32 @@
             <th width="60">ЄДРПОУ</th>
             <th width="200">Назва клієнта</th>
             <th width="80">Сума</th>
-            <th width="600">Перелік документів</th>
-            <th width="130">Дата заявки</th>
-            <th width="80">Статус</th>
-            <th width="130">Дата статусу заявки</th>
+            <th width="500">Перелік документів</th>
+            <th width="100">Дата заявки</th>
+            <th width="120">Статус</th>
+            <th width="100">Дата статусу заявки</th>
             <th width="20">Змінити</th>
 
         </tr>
+
         <c:forEach items="${listOfLoans}" var="loan">
-            <tr>
+
+            <c:if test="${loan.status eq 'на розгляді'}">
+                <tr>
+                    <td>${loan.id}</td>
+                    <td>${loan.edrpou}</td>
+                    <td>${loan.name}</td>
+                    <td>${loan.sum}</td>
+                    <td>${loan.documents.replaceAll(",","<br>")}</td>
+                    <td>${loan.datetime}</td>
+                    <td>${loan.status}</td>
+                    <td>${loan.datetimerisk}</td>
+                    <td><a href="<c:url value='/updateloan/${loan.id}'/>" >Змінити</a></td>
+                </tr>
+            </c:if>
+
+            <c:if test="${loan.status eq 'відмова'}">
+            <tr class="reject">
                 <td>${loan.id}</td>
                 <td>${loan.edrpou}</td>
                 <td>${loan.name}</td>
@@ -90,8 +119,48 @@
                 <td>${loan.status}</td>
                 <td>${loan.datetimerisk}</td>
                 <td><a href="<c:url value='/updateloan/${loan.id}'/>" >Змінити</a></td>
-
             </tr>
+            </c:if>
+            <c:if test="${loan.status eq 'не надано всі документи'}">
+                <tr class="notalldocuments">
+                    <td>${loan.id}</td>
+                    <td>${loan.edrpou}</td>
+                    <td>${loan.name}</td>
+                    <td>${loan.sum}</td>
+                    <td>${loan.documents.replaceAll(",","<br>")}</td>
+                    <td>${loan.datetime}</td>
+                    <td>${loan.status}</td>
+                    <td>${loan.datetimerisk}</td>
+                    <td><a href="<c:url value='/updateloan/${loan.id}'/>" >Змінити</a></td>
+                </tr>
+            </c:if>
+            <c:if test="${loan.status eq 'прийнято в роботу'}">
+                <tr class="getwork">
+                    <td>${loan.id}</td>
+                    <td>${loan.edrpou}</td>
+                    <td>${loan.name}</td>
+                    <td>${loan.sum}</td>
+                    <td>${loan.documents.replaceAll(",","<br>")}</td>
+                    <td>${loan.datetime}</td>
+                    <td>${loan.status}</td>
+                    <td>${loan.datetimerisk}</td>
+                    <td><a href="<c:url value='/updateloan/${loan.id}'/>" >Змінити</a></td>
+                </tr>
+            </c:if>
+            <c:if test="${loan.status eq 'погоджено'}">
+                <tr class="ok">
+                    <td>${loan.id}</td>
+                    <td>${loan.edrpou}</td>
+                    <td>${loan.name}</td>
+                    <td>${loan.sum}</td>
+                    <td>${loan.documents.replaceAll(",","<br>")}</td>
+                    <td>${loan.datetime}</td>
+                    <td>${loan.status}</td>
+                    <td>${loan.datetimerisk}</td>
+                    <td><a href="<c:url value='/updateloan/${loan.id}'/>" >Змінити</a></td>
+                </tr>
+            </c:if>
+
         </c:forEach>
     </table>
 </c:if>
